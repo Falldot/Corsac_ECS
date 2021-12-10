@@ -1,0 +1,6 @@
+[submodule "test/packages/Corsac_STL"]
+	path = test/packages/Corsac_STL
+	url = https://github.com/Falldot/Corsac_STL.git
+[submodule "test/packages/Corsac_Test"]
+	path = test/packages/Corsac_Test
+	url = https://github.com/Lirik-Keltran/Corsac-Test.git
