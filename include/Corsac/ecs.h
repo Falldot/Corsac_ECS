@@ -997,22 +997,15 @@ namespace corsac
     template<size_t nodeCount, bool bEnableOverflow>
     struct ComponentMake<nodeCount, bEnableOverflow> : public ComponentTag<nodeCount, bEnableOverflow> {};
 
-    using Init = void;
-    using Update = int;
-    using Clear = float;
-    using Exit = double;
-
-    template<auto F, typename T, size_t nodeCount = 0, bool bEnableOverflow = true>
+    template<auto F, size_t nodeCount = 0, bool bEnableOverflow = true>
     struct System : public EntityStorage<EntityType, nodeCount, bEnableOverflow>
     {
-        using Type = T;
         using EntityStorage<EntityType, nodeCount, bEnableOverflow>::packed;
         constexpr void call()
         {
             F(packed);
         }
     };
-
 
     namespace internal
     {
@@ -1033,19 +1026,19 @@ namespace corsac
         }
 
         template<auto &comp>
-        inline bool has() noexcept
+        [[nodiscard]] inline bool has() const noexcept
         {
             return comp.has(value);
         }
 
         template<auto &comp>
-        inline auto get() noexcept
+        [[nodiscard]] inline decltype(auto) get() noexcept
         {
             return comp.get(value);
         }
 
         template<auto &comp, size_t I>
-        inline auto get() noexcept
+        [[nodiscard]] inline decltype(auto) get() noexcept
         {
             return comp.template get<I>(value);
         }
@@ -1059,13 +1052,13 @@ namespace corsac
         template<auto &comp, typename data>
         inline void add(data&& arg) noexcept
         {
-            comp.add(value, arg);
+            comp.add(value, corsac::move(arg));
         }
 
         template<auto &comp, typename data>
         inline void add(const data& arg) noexcept
         {
-            comp.add(value, corsac::move(arg));
+            comp.add(value, arg);
         }
 
         template<auto &comp, typename... Args>

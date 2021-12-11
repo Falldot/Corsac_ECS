@@ -37,10 +37,14 @@ namespace ecs
     {
         for(auto it = entities.begin(), itEnd = entities.end(); it != itEnd; ++it)
         {
-            std::cout << "Up " << *it << std::endl;
+            Position[*it] += 2;
+        }
+        for(auto it = entities.begin(), itEnd = entities.end(); it != itEnd; ++it)
+        {
+            std::cout << Position[*it] << std::endl;
         }
     }
-    corsac::System<Move, corsac::Update> Translate;
+    corsac::System<Move> Translate;
 }
 
 int main()
@@ -53,47 +57,9 @@ int main()
     enemy.add<ecs::Tag>();
     person.add<ecs::Tag>();
 
-    for (size_t i = 0; i < ecs::Tag.size(); ++i)
-    {
-        std::cout << ecs::Tag[i] << std::endl;
-    }
-    for(auto it = ecs::Tag.begin(), itEnd = ecs::Tag.end(); it != itEnd; ++it)
-    {
-        std::cout << *it << std::endl;
-    }
-
-    std::cout << "__________________________" << std::endl;
-
     player.add<ecs::Position>(3);
     enemy.add<ecs::Position>(323);
     person.add<ecs::Position>(13213);
-
-    std::cout << player.get<ecs::Position>() << std::endl;
-
-    for (size_t i = 0; i < ecs::Position.size(); ++i)
-    {
-        std::cout << ecs::Position[i] << std::endl;
-    }
-    for(auto it = ecs::Position.begin(), itEnd = ecs::Position.end(); it != itEnd; ++it)
-    {
-        std::cout << *it << std::endl;
-    }
-    std::cout << "__________________________" << std::endl;
-
-    player.add<ecs::Direction>(3, 11);
-    enemy.add<ecs::Direction>(323, 43);
-    person.add<ecs::Direction>(13213, 3123);
-
-    auto X = ecs::Direction.get<0>();
-    auto Y = ecs::Direction.get<1>();
-
-    std::cout << player.get<ecs::Direction, 0>() << std::endl;
-
-    for (size_t i = 0; i < ecs::Direction.size(); ++i)
-    {
-        std::cout << X[i] << "/" << Y[i] << std::endl;
-    }
-    std::cout << "__________________________" << std::endl;
 
     player.add<ecs::Translate>();
     enemy.add<ecs::Translate>();
