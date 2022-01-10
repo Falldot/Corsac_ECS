@@ -4,3 +4,6 @@
 [submodule "test/packages/Corsac_Test"]
 	path = test/packages/Corsac_Test
 	url = https://github.com/Lirik-Keltran/Corsac-Test.git
+[submodule "test/packages/Corsac_Benchmark"]
+	path = test/packages/Corsac-Benchmark
+	url = https://github.com/Lirik-Keltran/Corsac-Benchmark.git

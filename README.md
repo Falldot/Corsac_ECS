@@ -42,24 +42,24 @@ corsac::GroupMake<
 >;
 ```
 
-## Entity
+## EntityType
 
 Создать пустую сущность
 
 ```c++
-corsac::Entity Player;
+corsac::EntityType Player;
 ```
 
 Создать сущность группы
 
 ```c++
-corsac::Entity<Unit> Player;
+corsac::EntityType<Unit> Player;
 ```
 
 Можно задать `кол-во эффетов` и `возможность переполнения заданного значения`
 
 ```c++
-corsac::Entity<
+corsac::EntityType<
     Unit,
     4,      // default: 0
     false   // default: true
@@ -159,10 +159,10 @@ class MainScene
 
     void Init()
     {
-        Entity<Player> Hero;
+        EntityType<Player> Hero;
         Hero.rep<Position>(120, 400);
 
-        Entity<Enemy> Goblin;
+        EntityType<Enemy> Goblin;
         Goblin.rep<Position>(120, 700);
     }
 

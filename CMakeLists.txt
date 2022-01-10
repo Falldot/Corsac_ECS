@@ -14,8 +14,8 @@ else()
     add_compile_options(
             -Wall -Wextra -Wpedantic -Wcast-align -Wcast-qual
             -Wconversion -Wctor-dtor-privacy -Wenum-compare -Wfloat-equal
-            -Wnon-virtual-dtor -Woverloaded-virtual #-Wold-style-cast
-            -Wredundant-decls -Wsign-conversion -Wsign-promo
+            -Wnon-virtual-dtor -Woverloaded-virtual -Wold-style-cast
+            -Wredundant-decls -Wsign-conversion -Wsign-promo -O3
     )
 endif()
 
@@ -34,6 +34,6 @@ target_include_directories(${PROJECT_NAME} INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
-target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
 add_library(${NAME_SPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 target_link_libraries(${PROJECT_NAME} INTERFACE ${NAME_SPACE}::STL)
